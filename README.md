@@ -81,18 +81,18 @@ npm run start
 No arquivo `.env.dvelopment`:
 
 ```
-URL_API=http://localhost:8080/api
+URL_API=http://localhost:8080
 ```
 
 ---
 
 ## Check-list
 
-- [ ] Listagem de tarefas funcionando
-- [ ] Formulário para adicionar tarefas com campos obrigatórios
-- [ ] Filtro por categoria e ordenação por prazo
-- [ ] Marcar como concluída e excluir tarefas
-- [ ] Estilo diferenciado para concluídas
+- ✅ Listagem de tarefas funcionando
+- ✅ Formulário para adicionar tarefas com campos obrigatórios
+- ✅ Filtro por categoria e ordenação por prazo
+- ✅ Marcar como concluída e excluir tarefas
+- ✅ Estilo diferenciado para concluídas
 
 ---
 
@@ -100,7 +100,6 @@ URL_API=http://localhost:8080/api
 
 - Paginação da lista (backend já suporta)
 - Validação de formulários com React Hook Form ou Yup
-- Testes de interface com Jest + React Testing Library
 - Autenticação (ex.: JWT)
 
 ---
