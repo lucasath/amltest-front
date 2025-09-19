@@ -1,40 +1,108 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Documentação — Frontend Next.js (Sistema de Tarefas)
 
-## Getting Started
+## Visão Geral
 
-First, run the development server:
+Este documento descreve a implementação do **frontend** em **Next.js** para o Sistema de Tarefas, que consome o backend exposto em Java Spring Boot.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+A aplicação permite listar, criar, filtrar, ordenar, concluir e excluir tarefas, refletindo visualmente o estado de cada uma.
+
+---
+
+## Tecnologias Utilizadas
+
+- **Next.js** (versão recente)
+- **React**
+- **npm** (gerenciamento de pacotes)
+- **Axios** ou Fetch API para comunicação HTTP com o backend
+- **Tailwind CSS** para estilização
+
+---
+
+## Estrutura do Projeto
+
+```
+frontend-next/
+├─ public/
+├─ src/
+│  ├─ app/
+|  |  ├─ @types/
+│  │  ├─ pages/
+│  |  ├─ components/
+|  |  |  ├─ forms/
+|  |  |     └─ TaskForm/
+|  |  |  └─ molecules/
+|  |  |     └─ TaskList/
+│  │  ├─ context/
+|  |  |  └─ formContext/
+│  │  ├─ hooks/
+|  |  |  └─ form/
+│  |  ├─ service/
+│  |  |  ├─ categorias/
+│  |  |  ├─ tarefas/
+|  |  |  └─ api/
+│  │  └─ templates
+|  |     └─ Tasks/
+│  └─ styles/
+└─ package.json
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Fluxo de Funcionalidades
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+1. **Carregar Página** → buscar categorias e lista inicial de tarefas.
+2. **Adicionar Tarefa** → enviar formulário.
+3. **Concluir Tarefa** → botão "Concluir" → chama `PUT /api/tasks/{id}/complete`.
+4. **Excluir Tarefa** → botão "Excluir" → chama `DELETE /api/tasks/{id}`.
+5. **Filtrar/Ordenar** → altera filtros → `TaskList` rebusca tarefas.
+6. **UI Dinâmica** → tarefas concluídas têm estilo diferenciado.
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+---
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+## Execução
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Instalação e desenvolvimento
 
-## Learn More
+```bash
+# instalar dependências
+npm install
 
-To learn more about Next.js, take a look at the following resources:
+# rodar em desenvolvimento
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+### Build e produção
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run build
+npm run start
+```
 
-## Deploy on Vercel
+### Variáveis de ambiente
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+No arquivo `.env.dvelopment`:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+```
+URL_API=http://localhost:8080/api
+```
+
+---
+
+## Check-list
+
+- [ ] Listagem de tarefas funcionando
+- [ ] Formulário para adicionar tarefas com campos obrigatórios
+- [ ] Filtro por categoria e ordenação por prazo
+- [ ] Marcar como concluída e excluir tarefas
+- [ ] Estilo diferenciado para concluídas
+
+---
+
+## Possíveis Melhorias Futuras
+
+- Paginação da lista (backend já suporta)
+- Validação de formulários com React Hook Form ou Yup
+- Testes de interface com Jest + React Testing Library
+- Autenticação (ex.: JWT)
+
+---
+
+Esse frontend em Next.js garante integração simples com o backend e uma experiência de gerenciamento de tarefas.
